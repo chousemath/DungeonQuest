@@ -11,27 +11,47 @@
 #include <iostream>
 #include <string>
 #include <locale>
+#include <stdlib.h>
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    string playerName;
+    string playerFirstName;
+    string playerLastName;
     int playerAge;
+    int playerExperience;
     
     // all symbols discarded at compile time
     enum gameDifficulty {NOVICE, EASY, NORMAL, HARD, UNBEATABLE};
     
+    // PLAYER NAME
     cout << "Welcome weary traveller, you have come a long, long way..." << endl;
-    cout << "Tell me traveller, what is your name? ";
-    cin >> playerName;
-    cout << "It is not by chance that we meet here tonight " + playerName << "." << endl;
-    std::string copy(playerName); // make a copy of the string
+    cout << "Tell me traveller, what is your first name? ";
+    cin >> playerFirstName;
+    cout << "And what is your last name? ";
+    cin >> playerLastName;
+    cout << "It is not by chance that we meet here tonight " + playerFirstName + " " + playerLastName
+         << "." << endl;
+    std::string copy(playerFirstName + " " + playerLastName); // make a copy of the string
     std::reverse(copy.begin(), copy.end());
     cout << "Your name backwards, by the way, is: "
          << copy
          << endl;
+    
+    // PLAYER AGE AND EXPERIENCE
     cout << "Your garments hide your features, what, may I ask, is your age? ";
     cin >> playerAge;
+    cout << "And for how many years have you been on this never ending quest? ";
+    cin >> playerExperience;
+    // check if what the player just entered makes sense
+    while (playerAge < playerExperience) {
+        cout << "That is nonsense! That makes no sense...please be truthful..." << endl;
+        cout << "Your garments hide your features, what, may I ask, is your age? ";
+        cin >> playerAge;
+        cout << "And for how many years have you been on this never ending quest? ";
+    }
+    
+    cin >> playerExperience;
     if (playerAge < 15){
         cout << "The perils ahead of your are too great at this time, be gone!" << endl;
     } else {
