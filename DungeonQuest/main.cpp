@@ -15,6 +15,15 @@
 
 using namespace std;
 
+void say(string text) {
+    cout << text << endl;
+}
+
+int endGame() {
+    say("GAME OVER");
+    return 0;
+}
+
 int main(int argc, const char * argv[]) {
     string playerFirstName;
     string playerLastName;
@@ -23,9 +32,10 @@ int main(int argc, const char * argv[]) {
     
     // all symbols discarded at compile time
     enum gameDifficulty {NOVICE, EASY, NORMAL, HARD, UNBEATABLE};
+    enum riddle1Answers {DOG, TABLE, MAN, SQUID};
     
     // PLAYER NAME
-    cout << "Welcome weary traveller, you have come a long, long way..." << endl;
+    say("Welcome weary traveller, you have come a long, long way...");
     cout << "Tell me traveller, what is your first name? ";
     cin >> playerFirstName;
     cout << "And what is your last name? ";
@@ -45,53 +55,81 @@ int main(int argc, const char * argv[]) {
     cin >> playerExperience;
     // check if what the player just entered makes sense
     while (playerAge < playerExperience) {
-        cout << "That is nonsense! That makes no sense...please be truthful..." << endl;
+        say("\nThat is nonsense! Please be truthful...I will ask you again...");
         cout << "Your garments hide your features, what, may I ask, is your age? ";
         cin >> playerAge;
         cout << "And for how many years have you been on this never ending quest? ";
+        cin >> playerExperience;
     }
     
-    cin >> playerExperience;
     if (playerAge < 15){
-        cout << "The perils ahead of your are too great at this time, be gone!" << endl;
+        say("The perils ahead of your are too great at this time, be gone!");
     } else {
-        cout << "Ah, you have come to the right place at the right time..." << endl;
-        cout << "How difficult of a quest are you prepared for traveller?" << endl;
-        cout << "\t0 - NOVICE" << endl;
-        cout << "\t1 - EASY" << endl;
-        cout << "\t2 - NORMAL" << endl;
-        cout << "\t3 - HARD" << endl;
-        cout << "\t4 - UNBEATABLE" << endl;
+        say("Ah, you have come to the right place at the right time...");
+        say("How difficult of a quest are you prepared for traveller?");
+        say("\t0 - NOVICE");
+        say("\t1 - EASY");
+        say("\t2 - NORMAL");
+        say("\t3 - HARD");
+        say("\t4 - UNBEATABLE");
         cout << "\nENTER DIFFICULTY NUMBER: ";
         int myDifficulty;
         cin >> myDifficulty;
         switch (myDifficulty) {
             case NOVICE:
-                cout << "You have chosen the NOVICE level adventure~" << endl;
-                cout << "You're kidding me right?" << endl;
+                say("You have chosen the NOVICE level adventure~");
+                say("You're kidding me right?");
                 break;
             case EASY:
-                cout << "You have chosen the EASY level adventure~" << endl;
-                cout << "Psshhh get out of my site you simpleton!" << endl;
+                say("You have chosen the EASY level adventure~");
+                say("Psshhh get out of my site you simpleton!");
                 break;
             case NORMAL:
-                cout << "You have chosen the NORMAL level adventure~" << endl;
-                cout << "A normal adventure for a normal person. You dissapoint me..." << endl;
+                say("You have chosen the NORMAL level adventure~");
+                say("A normal adventure for a normal person. You disapoint me...");
                 break;
             case HARD:
-                cout << "You have chosen the HARD level adventure~" << endl;
-                cout << "Good things come to those who seek a challenge." << endl;
+                say("You have chosen the HARD level adventure~");
+                say("Good things come to those who seek a challenge.");
                 break;
             case UNBEATABLE:
-                cout << "You have chosen the UNBEATABLE level adventure~" << endl;
-                cout << "A challenge you seek? A challenge you will have!" << endl;
+                say("You have chosen the UNBEATABLE level adventure~");
+                say("A challenge you seek? A challenge you will have!");
                 break;
             default:
-                cout << "You have chosen an undefined difficulty level" << endl;
-                cout << "You must be totally crazy traveller, I like it!" << endl;
+                say("You have chosen an undefined difficulty level");
+                say("You must be totally crazy traveller, I like it!");
                 break;
         }
     }
-    cout << "GAME OVER" << endl;
-    return 0;
+    
+    cout << "Before you embark on your quest, I must ask you a riddle\n"
+         << "What walks on 4 legs in the morning, 2 in the afternoon, and 3 in the evening?" << endl;
+    say("\t0: a dog");
+    say("\t1: a table");
+    say("\t2: a man");
+    say("\t3: a squid");
+    cout << "\nENTER ANSWER NUMBER: ";
+    int riddle1Answer;
+    cin >> riddle1Answer;
+    switch (riddle1Answer) {
+        case DOG:
+            say("\"DOG\" is not the correct answer you FOOL");
+            return endGame();
+            break;
+        case TABLE:
+            say("\"TABLE\" is incorrect you IDIOT");
+            break;
+        case MAN:
+            say("You have chose wisely...");
+            break;
+        case SQUID:
+            say("Get out of my sight you fool, \"SQUID\" is WRONG");
+            break;
+        default:
+            say("You disappoint me stranger...");
+            break;
+    }
+    say("You have come to the end dear traveller...");
+    return endGame();
 }
