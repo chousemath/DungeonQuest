@@ -29,10 +29,12 @@ int main(int argc, const char * argv[]) {
     string playerLastName;
     int playerAge;
     int playerExperience;
+    int magicPoints;
     
     // all symbols discarded at compile time
     enum gameDifficulty {NOVICE, EASY, NORMAL, HARD, UNBEATABLE};
     enum riddle1Answers {DOG, TABLE, MAN, SQUID};
+    enum choice1Answers {CLEAR, OVERGROWN, DARK, LIGHT};
     
     // PLAYER NAME
     say("Welcome weary traveller, you have come a long, long way...");
@@ -119,15 +121,48 @@ int main(int argc, const char * argv[]) {
             break;
         case TABLE:
             say("\"TABLE\" is incorrect you IDIOT");
+            return endGame();
             break;
         case MAN:
             say("You have chose wisely...");
             break;
         case SQUID:
             say("Get out of my sight you fool, \"SQUID\" is WRONG");
+            return endGame();
             break;
         default:
             say("You disappoint me stranger...");
+            return endGame();
+            break;
+    }
+    
+    say("Now that you have passed the first challenge, I will award you with 10 magic points");
+    magicPoints += 10;
+//    say("You have " + magicPoints + " magic points currently");
+    say("Now for the first choice on your long journey...");
+    say("You see a road before you, what kind of road is it?");
+    say("\t0: clear");
+    say("\t1: overgrown");
+    say("\t2: dark");
+    say("\t3: light");
+    cout << "\nENTER ANSWER NUMBER: ";
+    int choice1Answer;
+    cin >> choice1Answer;
+    switch (choice1Answer) {
+        case CLEAR:
+            say("I see you have chosen the clear path...interesting...");
+            break;
+        case OVERGROWN:
+            say("Aaaaah the overgrown path, very fascinating...");
+            break;
+        case DARK:
+            say("The dark path? You surprise me traveller...");
+            break;
+        case LIGHT:
+            say("Staying in the light I see? Very well...");
+            break;
+        default:
+            say("Come now...I have no time for games...");
             break;
     }
     say("You have come to the end dear traveller...");
